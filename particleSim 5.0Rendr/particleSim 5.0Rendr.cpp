@@ -6,7 +6,6 @@
 #include <chrono>
 #include <random>
 #include <limits>
-#include <fstream>
 #include <unordered_map>
 #include "Particles.h"
 #include <SFML/Graphics.hpp>
@@ -119,17 +118,7 @@ int main() {
     window.draw(particleBatch);
     window.display();
 
-    fstream file("particleInfo.csv", ios::out);
-
     s.setK(((nP * 9.8 * particles[0].getMass()) / 0.2) * 4);
-
-    //writing k and num of particles into the file for it to be analyzed using python but not seen
-    file << "# nP: " << nP << "\n";
-    file << "# k: " << s.getK() << "\n";
-    file << "# h: " << s.getHeight() << "\n";
-
-    //file rows
-    file << "Particle num,x,y,vx,vy,ay,cellRow,cellCol,time(s)" << "\n";
 
     //sets accumulator to 0
     accumulator = 0;
@@ -200,8 +189,6 @@ int main() {
         window.draw(particleBatch);
         window.display();
     }
-
-    file.close();
 
     return 0;
 }
