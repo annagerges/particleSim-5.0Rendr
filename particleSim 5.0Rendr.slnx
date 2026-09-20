@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="particleSim 5.0Rendr/particleSim 5.0Rendr.vcxproj" />
+</Solution>
