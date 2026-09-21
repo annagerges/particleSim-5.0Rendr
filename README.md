@@ -159,7 +159,7 @@ A flaw of the previous versions was that they didn't check if particles in diffe
 ## Spring Dampening
 Program Allows User to enter a spring dampening force coefficient (0-0.2)
 
-## Demo
+## Demo (The weird pink after marks are from lower video quality)
 ![Program Demo](demo.png)
 
 ### Frame Timing
