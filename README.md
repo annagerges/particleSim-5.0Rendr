@@ -6,11 +6,12 @@ A C++ simulation modeling gravitational and spring forces on particles in 2D spa
 
 ## Overview
 
-This project simulates a system of 100–1000 particles affected by gravity and spring forces, with particle-to-particle and wall collisions. The simulation uses:
+This project simulates a system of 100–1000 particles at 60fps affected by gravity and spring forces, with particle-to-particle and wall collisions. The simulation uses:
 
 - **RK4 integration** for <0.1% energy drift and increase in accuracy compared to Euler integration
 - **Spatial partitioning hashmap** to reduce collision detection from O(n²) to O(n)
 - **Spring Dampening** to replicate real world conditions
+- **Rendering**: SFML and OpenGL
 
 ---
 
@@ -222,10 +223,10 @@ https://github.com/user-attachments/assets/3a20db6b-6e33-470a-bff5-7009651d9068
 
 #### Requirements
 - **C++**: C++11 or later
-- **Python**: 3.14+, with `pandas` and `matplotlib`
+- **Rendering**: SFML 2.5+, OpenGL 3.0+
 
 
 ---
 
-**Date**: August 2026  
+**Date**: September 2026  
 **License**: MIT
