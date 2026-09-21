@@ -210,10 +210,11 @@ The points are grouped a vector because it's faster that 1000 individual points.
 ```
 
 ## Rendering Demo
-<video width="800" controls autoplay muted loop>
-  <source src="renderDemo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+
+
+https://github.com/user-attachments/assets/3a20db6b-6e33-470a-bff5-7009651d9068
+
+
 
 
 
