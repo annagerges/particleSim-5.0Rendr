@@ -73,6 +73,7 @@ int main() {
     uniform_real_distribution<double>randVelo(1, 30);
 
     unordered_map <int, vector<Particles*>> hash;
+    hash.reserve(nBox * nBox);
 
     for (int index = 0; index < nP; index++) {
 

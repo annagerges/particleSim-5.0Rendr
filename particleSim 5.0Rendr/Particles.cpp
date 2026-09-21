@@ -102,7 +102,8 @@ void fix(vector<Particles>& part, unordered_map<int, vector<Particles*>>& grid, 
 		//cell (any paritcle w same row and col will have the same cell key)
 		cellKey = (row * nBox) + col;
 
-		grid[cellKey].push_back(&part[index]);
+		// Inserts key
+		grid.try_emplace(cellKey).first->second.push_back(&part[index]);
 	}
 }
 
@@ -159,7 +160,7 @@ void particleCollis(unordered_map<int, vector<Particles*>>& grid, int nBox) {
 		};
 
 		//loops through the vector of neighbor cell positions
-		for (auto neighborJump : neighbors) {
+		for (auto& neighborJump : neighbors) {
 			//row and col of neighbor cell
 			int nRow = row + neighborJump[0];
 			int nCol = col + neighborJump[1];
@@ -167,12 +168,16 @@ void particleCollis(unordered_map<int, vector<Particles*>>& grid, int nBox) {
 			if (nRow >= 0 && nRow < nBox && nCol >= 0 && nCol < nBox) {
 				int neighborkey = nRow * nBox + nCol;
 
+
+				auto adjCell = grid.find(neighborkey);
 				//if the cell isn't the end iterator of the hash map see if the neigbor particles collided with any of the original cell neigbors
-				if (grid.find(neighborkey) != grid.end()) {
+				if (adjCell != grid.end()) {
+					const auto& neighborParticles = adjCell->second;
+
 					for (auto* ogCellPart : cellParticles) {
 
 						//loop through the neighbors particles
-						for (auto* neighborParts : grid[neighborkey]) {
+						for (auto* neighborParts : neighborParticles) {
 
 							dy = neighborParts->getY() - ogCellPart->getY();
 							dx = neighborParts->getX() - ogCellPart->getX();
@@ -206,6 +211,14 @@ void particleCollis(unordered_map<int, vector<Particles*>>& grid, int nBox) {
 				}
 			}
 		}
+	}
+}
+
+//saves particle state into csv file
+void csvDump(vector<Particles>& part, string& buffer, double time) {
+	for (int index = 0; index < part.size(); index++) {
+		buffer += to_string(index + 1) + "," + to_string(part[index].getX()) + "," + to_string(part[index].getY()) + "," + to_string(part[index].getVx())
+			+ "," + to_string(part[index].getVy()) + "," + to_string(part[index].getA()) + "," + to_string(part[index].getRow()) + "," + to_string(part[index].getCol()) + ", " + to_string(time) + "\n";
 	}
 }
 
